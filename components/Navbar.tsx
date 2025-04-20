@@ -16,6 +16,8 @@ import { useGSAP } from "@gsap/react";
 import Lenis from "@studio-freight/lenis";
 import CartButton from "./CartButton";
 import CartDrawer from "./CartDrawer";
+import Image from "next/image";
+import logo from "@/assets/images/logo.png";
 
 // Animated Hamburger Menu component
 const HamburgerMenu = ({
@@ -477,7 +479,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, rotateY: 0 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
                 >
-                  Oitijjho
+                  <Image src={logo} alt="oitijjho express" width={100} />
                 </motion.div>
               </div>
             </Link>

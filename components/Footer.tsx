@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import logo from "@/assets/images/logo.png";
+import Image from "next/image";
 
 export default function Footer() {
   const [emailValue, setEmailValue] = useState("");
@@ -39,7 +41,7 @@ export default function Footer() {
               className="mb-4"
             >
               <div className="text-[#FF5722] text-xl font-bold mb-1">
-                Oitijjho
+                <Image src={logo} alt="oitijjho express" width={100} />
               </div>
               <div className="w-12 h-1 bg-gradient-to-r from-[#FF5722] to-[#FF9800] rounded-full"></div>
             </motion.div>
