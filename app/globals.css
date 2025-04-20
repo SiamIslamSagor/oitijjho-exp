@@ -1,0 +1,143 @@
+@import "tailwindcss";
+/* @import "tailwindcss/preflight"; */
+
+:root {
+  --background: #ffffff;
+  --foreground: #333333;
+  --primary: #ff5722;
+}
+
+body {
+  font-family: var(--font-geist-sans);
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling for the whole page */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Glow effects */
+.glow {
+  text-shadow: 0 0 10px rgba(255, 87, 34, 0.7);
+}
+
+.glow-box {
+  box-shadow: 0 0 15px rgba(255, 87, 34, 0.5);
+}
+
+/* 5 buttons styles */
+@layer components {
+  .btn-shine:hover {
+    animation: rotate624 0.7s ease-in-out both;
+  }
+
+  .btn-shine:hover span {
+    animation: storm1261 0.7s ease-in-out both;
+    animation-delay: 0.06s;
+  }
+
+  .btn-shine::after {
+    content: "";
+    position: absolute;
+    top: -120px;
+    left: -75px;
+    width: 150px;
+    height: 350px;
+    background: #ff9800;
+    opacity: 0.4;
+    transform: rotate(35deg);
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: -10;
+  }
+
+  .btn-shine:hover::after {
+    left: 120%;
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+@keyframes rotate624 {
+  0% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  25% {
+    transform: rotate(3deg) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: rotate(-3deg) translate3d(0, 0, 0);
+  }
+  75% {
+    transform: rotate(1deg) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes storm1261 {
+  0% {
+    transform: translate3d(0, 0, 0) translateZ(0);
+  }
+  25% {
+    transform: translate3d(4px, 0, 0) translateZ(0);
+  }
+  50% {
+    transform: translate3d(-3px, 0, 0) translateZ(0);
+  }
+  75% {
+    transform: translate3d(2px, 0, 0) translateZ(0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) translateZ(0);
+  }
+}
+
+/* hover card */
+
+.card p {
+  height: 100%;
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.5s;
+  /* background: #212121; */
+  border: 1px solid black; /* orange */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card p:hover {
+  flex: 4;
+}
+
+.card p span {
+  min-width: 14em;
+  padding: 0.5em;
+  text-align: center;
+  transform: rotate(-90deg);
+  transition: all 0.5s;
+  text-transform: uppercase;
+  /* color: #f97316; */
+  letter-spacing: 0.1em;
+}
+
+.card p:hover span {
+  transform: rotate(0deg);
+}
