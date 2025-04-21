@@ -1,15 +1,46 @@
 "use client";
 
-import { useEffect } from "react";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import gsap from "gsap";
+import bdMap from "@/assets/images/bangladesh-map-seeklogoo.png";
+import TooltipComponent from "@/components/TooltipCompo";
 import { useGSAP } from "@gsap/react";
-import { useCart } from "../components/CartContext";
+import gsap from "gsap";
 import Image from "next/image";
-import bdMap from "@/assets/images/bd-map.png";
+import { useEffect, useRef } from "react";
+import bookCover from "@/assets/images/cover2.jpg";
 
 export default function Home() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const pages =
+      containerRef.current?.querySelectorAll<HTMLDivElement>(".page");
+    if (!pages) return;
+
+    pages.forEach((page, i) => {
+      if (i % 2 === 0) {
+        page.style.zIndex = `${pages.length - i}`;
+      }
+
+      // Attach click behavior
+      page.setAttribute("data-page-num", `${i + 1}`);
+      page.onclick = function () {
+        const pageNum = parseInt(page.getAttribute("data-page-num") || "0", 10);
+
+        if (pageNum % 2 === 0) {
+          page.classList.remove("flipped");
+          if (page.previousElementSibling) {
+            page.previousElementSibling.classList.remove("flipped");
+          }
+        } else {
+          page.classList.add("flipped");
+          if (page.nextElementSibling) {
+            page.nextElementSibling.classList.add("flipped");
+          }
+        }
+      };
+    });
+  }, []);
+
   useGSAP(() => {
     // Animate hero elements on page load
     const tl = gsap.timeline();
@@ -41,20 +72,6 @@ export default function Home() {
       );
   }, []);
 
-  // Item fade-in animation for features and categories
-  const fadeInUp = {
-    initial: { y: 50, opacity: 0 },
-    animate: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: 0.05 * i,
-        duration: 0.5,
-        ease: [0.215, 0.61, 0.355, 1],
-      },
-    }),
-  };
-
   // Sample featured products
   const featuredProducts = [
     {
@@ -80,17 +97,12 @@ export default function Home() {
     },
   ];
 
-  // Import cart context and add to cart functionality
-  const { addToCart } = useCart();
-
-  const handleAddToCart = (product: any) => {
-    addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      category: product.category,
-    });
+  // Add new function for handling the div click
+  const handlePageContentClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    console.log("clicked on page content");
+    // Add your functionality here
   };
 
   return (
@@ -98,15 +110,29 @@ export default function Home() {
       <div className="w-full min-h-screen flex flex-col items-center justify-center my-20">
         <div className="relative">
           <Image src={bdMap} alt="BD Map" width={876} />
-          {/* for lg devices */}
-          <Link href="/bogurar-doi">
-            <button className="max-md:hidden absolute bg-transparent top-[170px] left-52 btn-shine  px-[118px] py-[58px]  border border-transparent rounded-[18px]  text-[#1d89ff] font-normal uppercase text-sm flex justify-center items-center cursor-pointer overflow-hidden transition-all duration-[300ms] ease-[cubic-bezier(0.02,0.01,0.47,1)]"></button>
-          </Link>
 
+          {/* for bogura */}
+
+          {/* for lg devices */}
+          <div className="max-md:hidden absolute !bg-transparent top-[225px] left-[200px] ">
+            <TooltipComponent popup1Text="বগুড়ার দই" />
+          </div>
           {/* for sm devices */}
-          <Link href="/bogurar-doi">
-            <button className="md:hidden absolute bg-transparent top-[70px] left-20 px-[80px] py-[50px]  border border-transparent rounded-[18px]  text-[#1d89ff] font-normal uppercase text-sm flex justify-center items-center cursor-pointer overflow-hidden transition-all duration-[300ms] ease-[cubic-bezier(0.02,0.01,0.47,1)]"></button>
-          </Link>
+
+          <div className="md:hidden absolute bg-transparent top-[35px] left-20  ">
+            <TooltipComponent />
+          </div>
+
+          {/* for sylhet */}
+          {/* for lg devices */}
+          <div className="max-md:hidden absolute !bg-transparent top-[205px] left-[700px] ">
+            <TooltipComponent />
+          </div>
+          {/* for sm devices */}
+
+          <div className="md:hidden absolute bg-transparent top-[35px] left-20  ">
+            <TooltipComponent />
+          </div>
         </div>
         <div className="mb-20 mt-40 max-sm:flex flex-wrap gap-2 items-center justify-center space-y-2">
           <div className="flex flex-wrap gap-2 items-center justify-center">
@@ -138,127 +164,72 @@ export default function Home() {
               </span>
             </button>
           </div>
-
-          {/* <motion.button
-            className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
-            whileHover={{
-              scale: 1.03,
-              boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
-            }}
-            whileTap={{ scale: 0.97 }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 10,
-            }}
-          >
-            <span className="relative z-10">Sign In</span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
-              initial={{ scale: 0, opacity: 0 }}
-              whileHover={{
-                scale: 1,
-                opacity: 1,
-              }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.button>
-          <motion.button
-            className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
-            whileHover={{
-              scale: 1.03,
-              boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
-            }}
-            whileTap={{ scale: 0.97 }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 10,
-            }}
-          >
-            <span className="relative z-10">Sign In</span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
-              initial={{ scale: 0, opacity: 0 }}
-              whileHover={{
-                scale: 1,
-                opacity: 1,
-              }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.button>
-          <motion.button
-            className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
-            whileHover={{
-              scale: 1.03,
-              boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
-            }}
-            whileTap={{ scale: 0.97 }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 10,
-            }}
-          >
-            <span className="relative z-10">Sign In</span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
-              initial={{ scale: 0, opacity: 0 }}
-              whileHover={{
-                scale: 1,
-                opacity: 1,
-              }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.button>
-          <motion.button
-            className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
-            whileHover={{
-              scale: 1.03,
-              boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
-            }}
-            whileTap={{ scale: 0.97 }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 10,
-            }}
-          >
-            <span className="relative z-10">Sign In</span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
-              initial={{ scale: 0, opacity: 0 }}
-              whileHover={{
-                scale: 1,
-                opacity: 1,
-              }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.button>
-          <motion.button
-            className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
-            whileHover={{
-              scale: 1.03,
-              boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
-            }}
-            whileTap={{ scale: 0.97 }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 10,
-            }}
-          >
-            <span className="relative z-10">Sign In</span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
-              initial={{ scale: 0, opacity: 0 }}
-              whileHover={{
-                scale: 1,
-                opacity: 1,
-              }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.button> */}
+        </div>
+        {/* book */}
+        <div className="z-[10]">
+          <div ref={containerRef} className="book">
+            <div id="pages" className="pages">
+              <div className="page overflow-hidden">
+                <Image
+                  src={bookCover}
+                  alt="BD Map"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10">
+                <p>Hello there!</p>
+              </div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10">
+                <div
+                  className="bg-red-500 !z-[99999] "
+                  onClick={handlePageContentClick}
+                  style={{ position: "relative", zIndex: 99999 }}
+                >
+                  <p>text</p>
+                </div>
+              </div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10">
+                <Image
+                  src={
+                    "https://khatifood.com/wp-content/uploads/2022/01/Bogra-Special-Doi.jpg"
+                  }
+                  alt="BD Map"
+                  width={576}
+                  height={400}
+                />
+              </div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -404,3 +375,143 @@ export default function Home() {
 //     </div>
 //   </div>
 // </section>;
+
+// {
+//   /* <motion.button
+//             className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
+//             whileHover={{
+//               scale: 1.03,
+//               boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
+//             }}
+//             whileTap={{ scale: 0.97 }}
+//             transition={{
+//               type: "spring",
+//               stiffness: 400,
+//               damping: 10,
+//             }}
+//           >
+//             <span className="relative z-10">Sign In</span>
+//             <motion.div
+//               className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
+//               initial={{ scale: 0, opacity: 0 }}
+//               whileHover={{
+//                 scale: 1,
+//                 opacity: 1,
+//               }}
+//               transition={{ duration: 0.3 }}
+//             />
+//           </motion.button>
+//           <motion.button
+//             className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
+//             whileHover={{
+//               scale: 1.03,
+//               boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
+//             }}
+//             whileTap={{ scale: 0.97 }}
+//             transition={{
+//               type: "spring",
+//               stiffness: 400,
+//               damping: 10,
+//             }}
+//           >
+//             <span className="relative z-10">Sign In</span>
+//             <motion.div
+//               className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
+//               initial={{ scale: 0, opacity: 0 }}
+//               whileHover={{
+//                 scale: 1,
+//                 opacity: 1,
+//               }}
+//               transition={{ duration: 0.3 }}
+//             />
+//           </motion.button>
+//           <motion.button
+//             className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
+//             whileHover={{
+//               scale: 1.03,
+//               boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
+//             }}
+//             whileTap={{ scale: 0.97 }}
+//             transition={{
+//               type: "spring",
+//               stiffness: 400,
+//               damping: 10,
+//             }}
+//           >
+//             <span className="relative z-10">Sign In</span>
+//             <motion.div
+//               className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
+//               initial={{ scale: 0, opacity: 0 }}
+//               whileHover={{
+//                 scale: 1,
+//                 opacity: 1,
+//               }}
+//               transition={{ duration: 0.3 }}
+//             />
+//           </motion.button>
+//           <motion.button
+//             className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
+//             whileHover={{
+//               scale: 1.03,
+//               boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
+//             }}
+//             whileTap={{ scale: 0.97 }}
+//             transition={{
+//               type: "spring",
+//               stiffness: 400,
+//               damping: 10,
+//             }}
+//           >
+//             <span className="relative z-10">Sign In</span>
+//             <motion.div
+//               className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
+//               initial={{ scale: 0, opacity: 0 }}
+//               whileHover={{
+//                 scale: 1,
+//                 opacity: 1,
+//               }}
+//               transition={{ duration: 0.3 }}
+//             />
+//           </motion.button>
+//           <motion.button
+//             className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
+//             whileHover={{
+//               scale: 1.03,
+//               boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
+//             }}
+//             whileTap={{ scale: 0.97 }}
+//             transition={{
+//               type: "spring",
+//               stiffness: 400,
+//               damping: 10,
+//             }}
+//           >
+//             <span className="relative z-10">Sign In</span>
+//             <motion.div
+//               className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
+//               initial={{ scale: 0, opacity: 0 }}
+//               whileHover={{
+//                 scale: 1,
+//                 opacity: 1,
+//               }}
+//               transition={{ duration: 0.3 }}
+//             />
+//           </motion.button> */
+// }
+// {
+//   /* for lg devices */
+// }
+// {
+//   /* <Link href="/bogurar-doi">
+//             <button className="max-md:hidden absolute bg-transparent top-[170px] left-52 btn-shine  px-[118px] py-[58px]  border border-transparent rounded-[18px]  text-[#1d89ff] font-normal uppercase text-sm flex justify-center items-center cursor-pointer overflow-hidden transition-all duration-[300ms] ease-[cubic-bezier(0.02,0.01,0.47,1)]"></button>
+//           </Link> */
+// }
+
+// {
+//   /* for sm devices */
+// }
+// {
+//   /* <Link href="/bogurar-doi">
+//             <button className="md:hidden absolute bg-transparent top-[70px] left-20 px-[80px] py-[50px]  border border-transparent rounded-[18px]  text-[#1d89ff] font-normal uppercase text-sm flex justify-center items-center cursor-pointer overflow-hidden transition-all duration-[300ms] ease-[cubic-bezier(0.02,0.01,0.47,1)]"></button>
+//           </Link> */
+// }
