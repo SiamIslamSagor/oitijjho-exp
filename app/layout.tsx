@@ -37,11 +37,11 @@ export default function RootLayout({
         <CartProvider>
           <Navbar />
           <div className="pt-24 relative">
-            <div className="fixed top-1/2 -translate-y-1/2 left-0">
+            <div className="fixed top-1/2 sm:max-xl:top-[60%] -translate-y-1/2 left-0">
               <HoverCard />
             </div>
             {children}
-            <div className="fixed top-1/2 -translate-y-1/2 right-0">
+            <div className="fixed top-1/2 sm:max-xl:top-[60%] -translate-y-1/2 right-0">
               <HoverCard />
             </div>
           </div>

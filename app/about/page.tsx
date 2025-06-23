@@ -82,7 +82,7 @@ export default function About() {
             transition={{ duration: 0.7 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
           >
-            About <span className="text-[#FF5722]">Oitijjho Express</span>
+            From Artisan Hands to Global Markets
           </motion.h1>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -96,9 +96,8 @@ export default function About() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-gray-600 max-w-3xl mx-auto text-lg"
           >
-            Preserving cultural heritage through artisanal craftsmanship since
-            2010. We're on a mission to connect traditional artisans with the
-            global market.
+            This is the story behind Oitijjho Express – where culture, commerce,
+            and community meet.
           </motion.p>
         </div>
       </section>
@@ -125,25 +124,35 @@ export default function About() {
               <div className="w-16 h-1 bg-gradient-to-r from-[#FF5722] to-[#FF9800] rounded-full mb-6"></div>
 
               <p className="text-gray-600 mb-6">
-                Oitijjho Express was founded in 2010 with a vision to preserve
-                and promote the rich cultural heritage of traditional
-                craftsmanship. Our journey began with a small collection of
-                handwoven textiles sourced directly from rural artisans.
+                What does it feel like to hold a piece of history in your hands?
               </p>
 
               <p className="text-gray-600 mb-6">
-                Over the years, we've expanded our collection to include a
-                diverse range of cultural artifacts, home décor, and wearable
-                art pieces. We work directly with over 200 artisan families
-                across various regions, ensuring fair compensation and
-                sustainable practices.
+                That question is what started Oitijjho Express. In 2010, we set
+                out to protect the stories woven into Bangladesh's heritage. Not
+                by putting them in a museum. But by keeping them alive in every
+                home, on every table, through every product.
+              </p>
+
+              <p className="text-gray-600 mb-6">
+                It began with a few handwoven textiles and a promise to a single
+                artisan. Today, it is a nationwide movement built with over 200
+                families who carry ancient knowledge in their hands.
+              </p>
+
+              <p className="text-gray-600 mb-6">
+                Each product we offer is more than an item. It is a thread of
+                someone's legacy, a clay pot shaped by the riverbank, a textile
+                dyed by memory, a spice carried from field to port with care.
+                When you choose from our collection, you do more than buy. You
+                become part of a living story.
               </p>
 
               <p className="text-gray-600">
-                Today, Oitijjho Express stands as a bridge between traditional
-                craftsmanship and the modern market, connecting skilled artisans
-                with discerning customers who value authenticity, heritage, and
-                ethical production.
+                We partner with global buyers, retailers, and conscious
+                businesses to bring these stories forward. Together, we are not
+                just selling. We are preserving. We are uplifting. We are
+                connecting roots with the world.
               </p>
             </div>
           </div>
@@ -159,9 +168,15 @@ export default function About() {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-[#FF5722] to-[#FF9800] mx-auto mb-6"></div>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              Our mission guides everything we do at Oitijjho Express, from
-              sourcing products to building relationships with our artisan
-              partners.
+              We exist to honor what is beautiful and make it last. At Oitijjho
+              Express, our mission is to keep tradition alive while building
+              opportunity. Every relationship we build and every item we share
+              is rooted in ethical sourcing, artisan empowerment, and cultural
+              pride.
+            </p>
+            <p className="text-gray-600 max-w-3xl mx-auto mt-4">
+              Because heritage should not be hidden, it should be held,
+              celebrated, and shared.
             </p>
           </div>
 
@@ -187,9 +202,9 @@ export default function About() {
                 Preserve Heritage
               </h3>
               <p className="text-gray-600">
-                We are committed to preserving traditional crafting techniques
-                and cultural heritage by providing a platform for artisans to
-                showcase their skills.
+                We are committed to keeping traditional techniques alive. By
+                giving artisans a platform to share their craft, we celebrate
+                history not as something past, but as something still in motion.
               </p>
             </div>
 
@@ -214,9 +229,9 @@ export default function About() {
                 Empower Artisans
               </h3>
               <p className="text-gray-600">
-                We strive to empower artisans economically by providing fair
-                compensation, sustainable work opportunities, and skills
-                development programs.
+                Behind every item is a maker with a story. We ensure fair pay,
+                sustainable work, and growth opportunities for the artisans who
+                carry these traditions forward.
               </p>
             </div>
 
@@ -241,9 +256,9 @@ export default function About() {
                 Promote Sustainability
               </h3>
               <p className="text-gray-600">
-                We are dedicated to promoting environmentally sustainable
-                practices by sourcing eco-friendly materials and supporting
-                traditional techniques that have minimal ecological impact.
+                We believe progress should never come at the cost of the planet.
+                That is why we choose eco-conscious materials and time-honored
+                methods that respect nature and reduce impact.
               </p>
             </div>
           </div>
@@ -259,8 +274,10 @@ export default function About() {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-[#FF5722] to-[#FF9800] mx-auto mb-6"></div>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              Our passionate team brings diverse expertise and shared values to
-              make Oitijjho Express what it is today.
+              Oitijjho Express is made possible by a team that shares one
+              mission: to uplift heritage through heart, hands, and hard work.
+              From creative direction to community outreach, every member brings
+              a story of their own to the journey we are building.
             </p>
           </div>
 

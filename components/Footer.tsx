@@ -5,10 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import logo from "@/assets/images/logo.png";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const [emailValue, setEmailValue] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const pathname = usePathname();
+  const isAboutPage = pathname === "/about";
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,7 +28,9 @@ export default function Footer() {
 
   return (
     <footer
-      className="bg-gray-50 shadow-2xl pt-16 pb-8 border-t border-gray-200 md:rounded-[35%_35%_0%_0%_/_22%_22%_0%_0%]"
+      className={`bg-gray-50 shadow-2xl pt-16 pb-8 border-t border-gray-200 ${
+        isAboutPage ? "" : "md:rounded-[35%_35%_0%_0%_/_22%_22%_0%_0%]"
+      }`}
       style={{ boxShadow: "rgba(200, 200, 211, 0.2) 0px 30px 90px 0px" }}
     >
       <div className="container mx-auto px-4">
@@ -52,8 +57,8 @@ export default function Footer() {
               viewport={{ once: true }}
               className="text-gray-600 mb-4"
             >
-              Celebrating cultural heritage through handcrafted treasures. Each
-              piece tells a story of tradition and artisanal expertise.
+              Celebrating cultural heritage through handcrafted treasures. Every
+              piece tells a story of tradition and craftsmanship.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -164,7 +169,7 @@ export default function Footer() {
                   href="/products"
                   className="text-gray-600 hover:text-[#FF5722] transition-colors"
                 >
-                  Shop
+                  Product Catalog
                 </Link>
               </li>
               <li>
@@ -225,7 +230,7 @@ export default function Footer() {
                   href="/returns"
                   className="text-gray-600 hover:text-[#FF5722] transition-colors"
                 >
-                  Returns & Exchanges
+                  Returns and Exchanges
                 </Link>
               </li>
               <li>
@@ -249,7 +254,7 @@ export default function Footer() {
                   href="/terms"
                   className="text-gray-600 hover:text-[#FF5722] transition-colors"
                 >
-                  Terms & Conditions
+                  Terms and Conditions
                 </Link>
               </li>
             </motion.ul>
@@ -273,8 +278,8 @@ export default function Footer() {
               viewport={{ once: true }}
               className="text-gray-600 mb-4"
             >
-              Subscribe to get special offers, free giveaways, and cultural
-              insights.
+              Be the first to hear about new arrivals, cultural stories, and
+              exclusive offers.
             </motion.p>
             <motion.form
               initial={{ opacity: 0, y: 20 }}
