@@ -5,6 +5,9 @@
   --background: #ffffff;
   --foreground: #333333;
   --primary: #ff5722;
+  --font-geist-sans: "Geist", sans-serif;
+  --font-geist-mono: "Geist Mono", monospace;
+  --font-playfair: "Playfair Display", serif;
 }
 
 body {
@@ -338,4 +341,14 @@ html.lenis {
 }
 .page:nth-child(odd) {
   background-position: right top;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-geist-sans);
+  }
+
+  .font-playfair {
+    font-family: var(--font-playfair);
+  }
 }

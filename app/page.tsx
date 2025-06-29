@@ -110,7 +110,14 @@ export default function Home() {
       <div className="w-full min-h-screen flex flex-col items-center justify-center my-20">
         {/* Hero Text Section */}
         <div className="text-center mb-12 px-4 sm:max-lg:max-w-3xl">
-          <h1 className="hero-title text-3xl md:text-4xl lg:text-6xl font-bold text-gray-900 mb-4">
+          <h1
+            className="hero-title text-3xl md:text-4xl lg:text-6xl text-gray-900 mb-4"
+            style={{
+              fontFamily: "'Georgia', Georgia, 'Times New Roman', serif",
+              fontWeight: 700,
+              fontStyle: "italic",
+            }}
+          >
             Discover Authentic GI Products from <br className="max-lg:hidden" />{" "}
             Every Region of Bangladesh
           </h1>
@@ -118,11 +125,11 @@ export default function Home() {
             Click the map to explore the rich heritage behind every item. Each
             region holds a story.
           </p>
-          <p className="hero-body text-base md:text-lg text-gray-700 max-w-4xl mx-auto">
+          {/* <p className="hero-body text-base md:text-lg text-gray-700 max-w-4xl mx-auto">
             From the mangoes of Rajshahi to the tea of Sylhet, explore products
             that carry the soul of Bangladesh. Every item is tied to its place,
             its people, and its purpose.
-          </p>
+          </p> */}
         </div>
 
         {/* interactive map */}
@@ -162,7 +169,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Button Grid Section */}
+        {/* Services Section */}
         <div className="text-center mb-20 mt-40 px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Choose Your Journey Through Heritage
@@ -172,56 +179,188 @@ export default function Home() {
             products of Bangladesh.
           </p>
 
-          <div className="flex flex-wrap gap-4 items-center justify-center max-w-5xl">
-            <button
-              className="btn-shine relative px-8 py-4 border border-[rgba(22,76,167,0.6)] rounded-[10px] bg-white text-[#1d89ff] font-normal uppercase text-sm flex justify-center items-center cursor-pointer overflow-hidden transition-all duration-[300ms] ease-[cubic-bezier(0.02,0.01,0.47,1)] group"
-              title="From Rajshahi mangoes to Bogura's yogurt, taste legends in every bite"
-            >
-              <span className="relative z-20 text-[#164ca7] text-lg font-medium tracking-[0.7px]">
-                Fruits and Flavors
-              </span>
-            </button>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* Fruits and Flavors */}
+            <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
+              <div className="h-48 bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
+                <div className="text-6xl">🥭</div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#FF5722] transition-colors">
+                  Fruits and Flavors
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  From Rajshahi mangoes to Bogura's yogurt, taste legends in
+                  every bite
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-[#FF5722] text-sm font-medium">
+                    Explore →
+                  </span>
+                  <div className="w-8 h-8 bg-[#FF5722]/10 rounded-full flex items-center justify-center">
+                    <svg
+                      className="w-4 h-4 text-[#FF5722]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <button
-              className="btn-shine relative px-8 py-4 border border-[rgba(22,76,167,0.6)] rounded-[10px] bg-white text-[#1d89ff] font-normal uppercase text-sm flex justify-center items-center cursor-pointer overflow-hidden transition-all duration-[300ms] ease-[cubic-bezier(0.02,0.01,0.47,1)] group"
-              title="Discover Jamdani, Muslin, and handloom wonders"
-            >
-              <span className="relative z-20 text-[#164ca7] text-lg font-medium tracking-[0.7px]">
-                Weaves and Textiles
-              </span>
-            </button>
+            {/* Weaves and Textiles */}
+            <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
+              <div className="h-48 bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
+                <div className="text-6xl">🧵</div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#FF5722] transition-colors">
+                  Weaves and Textiles
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Discover Jamdani, Muslin, and handloom wonders
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-[#FF5722] text-sm font-medium">
+                    Explore →
+                  </span>
+                  <div className="w-8 h-8 bg-[#FF5722]/10 rounded-full flex items-center justify-center">
+                    <svg
+                      className="w-4 h-4 text-[#FF5722]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <button
-              className="btn-shine relative px-8 py-4 border border-[rgba(22,76,167,0.6)] rounded-[10px] bg-white text-[#1d89ff] font-normal uppercase text-sm flex justify-center items-center cursor-pointer overflow-hidden transition-all duration-[300ms] ease-[cubic-bezier(0.02,0.01,0.47,1)] group"
-              title="Authentic items made with care by generations of skilled artisans"
-            >
-              <span className="relative z-20 text-[#164ca7] text-lg font-medium tracking-[0.7px]">
-                Handcrafted Heritage
-              </span>
-            </button>
+            {/* Handcrafted Heritage */}
+            <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
+              <div className="h-48 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
+                <div className="text-6xl">🏺</div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#FF5722] transition-colors">
+                  Handcrafted Heritage
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Authentic items made with care by generations of skilled
+                  artisans
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-[#FF5722] text-sm font-medium">
+                    Explore →
+                  </span>
+                  <div className="w-8 h-8 bg-[#FF5722]/10 rounded-full flex items-center justify-center">
+                    <svg
+                      className="w-4 h-4 text-[#FF5722]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <button
-              className="btn-shine relative px-8 py-4 border border-[rgba(22,76,167,0.6)] rounded-[10px] bg-white text-[#1d89ff] font-normal uppercase text-sm flex justify-center items-center cursor-pointer overflow-hidden transition-all duration-[300ms] ease-[cubic-bezier(0.02,0.01,0.47,1)] group"
-              title="Explore what makes each district unique"
-            >
-              <span className="relative z-20 text-[#164ca7] text-lg font-medium tracking-[0.7px]">
-                Regional Specialties
-              </span>
-            </button>
+            {/* Regional Specialties */}
+            <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
+              <div className="h-48 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+                <div className="text-6xl">🗺️</div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#FF5722] transition-colors">
+                  Regional Specialties
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Explore what makes each district unique
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-[#FF5722] text-sm font-medium">
+                    Explore →
+                  </span>
+                  <div className="w-8 h-8 bg-[#FF5722]/10 rounded-full flex items-center justify-center">
+                    <svg
+                      className="w-4 h-4 text-[#FF5722]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <button
-              className="btn-shine relative px-8 py-4 border border-[rgba(22,76,167,0.6)] rounded-[10px] bg-white text-[#1d89ff] font-normal uppercase text-sm flex justify-center items-center cursor-pointer overflow-hidden transition-all duration-[300ms] ease-[cubic-bezier(0.02,0.01,0.47,1)] group"
-              title="Sourced and curated for wholesale buyers and global retailers"
-            >
-              <span className="relative z-20 text-[#164ca7] text-lg font-medium tracking-[0.7px]">
-                Wholesale and Export Deals
-              </span>
-            </button>
+            {/* Wholesale and Export Deals */}
+            <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
+              <div className="h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                <div className="text-6xl">📦</div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#FF5722] transition-colors">
+                  Wholesale and Export Deals
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Sourced and curated for wholesale buyers and global retailers
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-[#FF5722] text-sm font-medium">
+                    Explore →
+                  </span>
+                  <div className="w-8 h-8 bg-[#FF5722]/10 rounded-full flex items-center justify-center">
+                    <svg
+                      className="w-4 h-4 text-[#FF5722]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Blog Highlights Section */}
-        <div className="text-center mb-20 px-4">
+        <div className="text-center mt-10 mb-0 px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Stories from the Heart of Bangladesh
           </h2>
@@ -305,8 +444,12 @@ export default function Home() {
         </div>
 
         {/* book */}
-        <div className="z-[10]">
-          <div ref={containerRef} className="book">
+        <div className="z-[10]" style={{ perspective: "1000px" }}>
+          <div
+            ref={containerRef}
+            className="book"
+            style={{ transform: "rotateX(7.5deg)" }}
+          >
             <div id="pages" className="pages">
               <div className="page overflow-hidden">
                 <Image
@@ -338,6 +481,7 @@ export default function Home() {
                   height={400}
                 />
               </div>
+              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
               <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
               <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
               <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
@@ -519,54 +663,6 @@ export default function Home() {
 
 // {
 //   /* <motion.button
-//             className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
-//             whileHover={{
-//               scale: 1.03,
-//               boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
-//             }}
-//             whileTap={{ scale: 0.97 }}
-//             transition={{
-//               type: "spring",
-//               stiffness: 400,
-//               damping: 10,
-//             }}
-//           >
-//             <span className="relative z-10">Sign In</span>
-//             <motion.div
-//               className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
-//               initial={{ scale: 0, opacity: 0 }}
-//               whileHover={{
-//                 scale: 1,
-//                 opacity: 1,
-//               }}
-//               transition={{ duration: 0.3 }}
-//             />
-//           </motion.button>
-//           <motion.button
-//             className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
-//             whileHover={{
-//               scale: 1.03,
-//               boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
-//             }}
-//             whileTap={{ scale: 0.97 }}
-//             transition={{
-//               type: "spring",
-//               stiffness: 400,
-//               damping: 10,
-//             }}
-//           >
-//             <span className="relative z-10">Sign In</span>
-//             <motion.div
-//               className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
-//               initial={{ scale: 0, opacity: 0 }}
-//               whileHover={{
-//                 scale: 1,
-//                 opacity: 1,
-//               }}
-//               transition={{ duration: 0.3 }}
-//             />
-//           </motion.button>
-//           <motion.button
 //             className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
 //             whileHover={{
 //               scale: 1.03,
