@@ -11,7 +11,7 @@ export default function Footer() {
   const [emailValue, setEmailValue] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
   const pathname = usePathname();
-  const isAboutPage = pathname === "/about";
+  const isHomePage = pathname === "/";
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ export default function Footer() {
   return (
     <footer
       className={`bg-gray-50 shadow-2xl pt-16 pb-8 border-t border-gray-200 ${
-        isAboutPage ? "" : "md:rounded-[35%_35%_0%_0%_/_22%_22%_0%_0%]"
+        isHomePage ? "md:rounded-[35%_35%_0%_0%_/_22%_22%_0%_0%]" : ""
       }`}
       style={{ boxShadow: "rgba(200, 200, 211, 0.2) 0px 30px 90px 0px" }}
     >

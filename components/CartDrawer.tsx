@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCart, CartItem } from "./CartContext";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import Link from "next/link";
 
 const CartDrawer: React.FC = () => {
   const {
@@ -341,13 +342,16 @@ const CartDrawer: React.FC = () => {
                     ${formatPrice(totalPrice)}
                   </span>
                 </div>
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-4 rounded-xl font-semibold shadow-lg hover:shadow-orange-300/30 transition-shadow"
-                >
-                  Checkout
-                </motion.button>
+                <Link href="/checkout">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setIsCartOpen(false)}
+                    className="w-full bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-4 rounded-xl font-semibold shadow-lg hover:shadow-orange-300/30 transition-shadow"
+                  >
+                    Checkout
+                  </motion.button>
+                </Link>
               </div>
             )}
           </motion.div>

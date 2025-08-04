@@ -1,46 +1,14 @@
 "use client";
 
-import bdMap from "@/assets/images/bangladesh-map-seeklogoo.png";
+import bdMap from "@/assets/images/bangladesh-map-updated.png";
 import TooltipComponent from "@/components/TooltipCompo";
+import Book from "@/components/Book";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
-import bookCover from "@/assets/images/cover2.jpg";
+import Link from "next/link";
 
 export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const pages =
-      containerRef.current?.querySelectorAll<HTMLDivElement>(".page");
-    if (!pages) return;
-
-    pages.forEach((page, i) => {
-      if (i % 2 === 0) {
-        page.style.zIndex = `${pages.length - i}`;
-      }
-
-      // Attach click behavior
-      page.setAttribute("data-page-num", `${i + 1}`);
-      page.onclick = function () {
-        const pageNum = parseInt(page.getAttribute("data-page-num") || "0", 10);
-
-        if (pageNum % 2 === 0) {
-          page.classList.remove("flipped");
-          if (page.previousElementSibling) {
-            page.previousElementSibling.classList.remove("flipped");
-          }
-        } else {
-          page.classList.add("flipped");
-          if (page.nextElementSibling) {
-            page.nextElementSibling.classList.add("flipped");
-          }
-        }
-      };
-    });
-  }, []);
-
   useGSAP(() => {
     // Animate hero elements on page load
     const tl = gsap.timeline();
@@ -97,14 +65,6 @@ export default function Home() {
     },
   ];
 
-  // Add new function for handling the div click
-  const handlePageContentClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
-    console.log("clicked on page content");
-    // Add your functionality here
-  };
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-start">
       <div className="w-full min-h-screen flex flex-col items-center justify-center my-20">
@@ -148,16 +108,7 @@ export default function Home() {
             <TooltipComponent />
           </div>
 
-          {/* for sylhet */}
-          {/* for lg devices */}
-          <div className="max-md:hidden absolute !bg-transparent top-[205px] left-[700px] ">
-            <TooltipComponent />
-          </div>
-          {/* for sm devices */}
-
-          <div className="md:hidden absolute bg-transparent top-[35px] left-20  ">
-            <TooltipComponent />
-          </div>
+        
         </div>
 
         {/* Certification Disclaimer */}
@@ -169,7 +120,63 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Services Section */}
+        {/* middle CTA */}
+        <div className="text-center mt-16 mb-20 px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              Ready to Explore?
+            </h2>
+            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+              Discover authentic GI products or schedule a personalized consultation to learn more about our heritage collection.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+              {/* Explore Products Button */}
+              <Link
+                href="/products"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white font-medium rounded-lg hover:from-[#FF9800] hover:to-[#FF5722] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                 EVENT BOOKING 
+                <svg
+                  className="ml-2 w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
+
+              {/* Book a Schedule Button */}
+              <Link
+                href="/schedule-book"
+                className="inline-flex items-center px-8 py-4 bg-white border-2 border-[#FF5722] text-[#FF5722] font-medium rounded-lg hover:bg-[#FF5722] hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+               B2B DEALS
+                <svg
+                  className="ml-2 w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Services Categories Section */}
         <div className="text-center mb-20 mt-40 px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Choose Your Journey Through Heritage
@@ -181,146 +188,154 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {/* Fruits and Flavors */}
-            <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
-              <div className="h-48 bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
-                <div className="text-6xl">🥭</div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#FF5722] transition-colors">
-                  Fruits and Flavors
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  From Rajshahi mangoes to Bogura's yogurt, taste legends in
-                  every bite
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-[#FF5722] text-sm font-medium">
-                    Explore →
-                  </span>
-                  <div className="w-8 h-8 bg-[#FF5722]/10 rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-[#FF5722]"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+            <Link href="/products?category=fruits-and-flavors" className="block">
+              <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
+                <div className="h-48 bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
+                  <div className="text-6xl">🥭</div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#FF5722] transition-colors">
+                    Fruits and Flavors
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4">
+                    From Rajshahi mangoes to Bogura's yogurt, taste legends in
+                    every bite
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#FF5722] text-sm font-medium">
+                      Explore →
+                    </span>
+                    <div className="w-8 h-8 bg-[#FF5722]/10 rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 text-[#FF5722]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Weaves and Textiles */}
-            <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
-              <div className="h-48 bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
-                <div className="text-6xl">🧵</div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#FF5722] transition-colors">
-                  Weaves and Textiles
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Discover Jamdani, Muslin, and handloom wonders
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-[#FF5722] text-sm font-medium">
-                    Explore →
-                  </span>
-                  <div className="w-8 h-8 bg-[#FF5722]/10 rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-[#FF5722]"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+            <Link href="/products?category=weaves-and-textiles" className="block">
+              <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
+                <div className="h-48 bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
+                  <div className="text-6xl">🧵</div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#FF5722] transition-colors">
+                    Weaves and Textiles
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4">
+                    Discover Jamdani, Muslin, and handloom wonders
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#FF5722] text-sm font-medium">
+                      Explore →
+                    </span>
+                    <div className="w-8 h-8 bg-[#FF5722]/10 rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 text-[#FF5722]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Handcrafted Heritage */}
-            <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
-              <div className="h-48 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
-                <div className="text-6xl">🏺</div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#FF5722] transition-colors">
-                  Handcrafted Heritage
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Authentic items made with care by generations of skilled
-                  artisans
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-[#FF5722] text-sm font-medium">
-                    Explore →
-                  </span>
-                  <div className="w-8 h-8 bg-[#FF5722]/10 rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-[#FF5722]"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+            <Link href="/products?category=handcrafted-heritage" className="block">
+              <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
+                <div className="h-48 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
+                  <div className="text-6xl">🏺</div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#FF5722] transition-colors">
+                    Handcrafted Heritage
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4">
+                    Authentic items made with care by generations of skilled
+                    artisans
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#FF5722] text-sm font-medium">
+                      Explore →
+                    </span>
+                    <div className="w-8 h-8 bg-[#FF5722]/10 rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 text-[#FF5722]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Regional Specialties */}
-            <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
-              <div className="h-48 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
-                <div className="text-6xl">🗺️</div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#FF5722] transition-colors">
-                  Regional Specialties
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Explore what makes each district unique
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-[#FF5722] text-sm font-medium">
-                    Explore →
-                  </span>
-                  <div className="w-8 h-8 bg-[#FF5722]/10 rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-[#FF5722]"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+            <Link href="/products?category=regional-specialties" className="block">
+              <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
+                <div className="h-48 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+                  <div className="text-6xl">🗺️</div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#FF5722] transition-colors">
+                    Regional Specialties
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4">
+                    Explore what makes each district unique
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#FF5722] text-sm font-medium">
+                      Explore →
+                    </span>
+                    <div className="w-8 h-8 bg-[#FF5722]/10 rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 text-[#FF5722]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Wholesale and Export Deals */}
             <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer">
@@ -334,6 +349,10 @@ export default function Home() {
                 <p className="text-gray-600 text-sm mb-4">
                   Sourced and curated for wholesale buyers and global retailers
                 </p>
+                <Link
+                href="/schedule-book"
+                 >
+
                 <div className="flex items-center justify-between">
                   <span className="text-[#FF5722] text-sm font-medium">
                     Explore →
@@ -354,13 +373,14 @@ export default function Home() {
                     </svg>
                   </div>
                 </div>
+                </Link>
               </div>
             </div>
           </div>
         </div>
 
         {/* Blog Highlights Section */}
-        <div className="text-center mt-10 mb-0 px-4">
+        <div className="text-center mt-10 mb-0 px-4 max-xl:hidden">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Stories from the Heart of Bangladesh
           </h2>
@@ -368,154 +388,10 @@ export default function Home() {
             Discover the cultural roots behind our GI-certified products. These
             stories bring each region to life.
           </p>
-
-          {/* blog section */}
-
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-           
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <div className="h-48 bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
-                <span className="text-orange-600 text-4xl">🍃</span>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  The Art of Jamdani Weaving
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Discover how generations of weavers in Dhaka have preserved
-                  the intricate art of Jamdani, creating textiles that tell
-                  stories of royal patronage and cultural pride.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">March 15, 2024</span>
-                  <button className="text-[#FF5722] hover:text-[#FF9800] font-medium text-sm">
-                    Read More →
-                  </button>
-                </div>
-              </div>
-            </div>
-
-           
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <div className="h-48 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
-                <span className="text-green-600 text-4xl">🥭</span>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Rajshahi's Golden Mangoes
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Explore the sweet legacy of Rajshahi's GI-certified mangoes,
-                  where every bite carries the essence of the region's fertile
-                  soil and centuries-old cultivation techniques.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">March 10, 2024</span>
-                  <button className="text-[#FF5722] hover:text-[#FF9800] font-medium text-sm">
-                    Read More →
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <div className="h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                <span className="text-blue-600 text-4xl">☕</span>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Sylhet's Tea Gardens
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Journey through the misty hills of Sylhet where tea gardens
-                  stretch as far as the eye can see, producing some of the
-                  world's finest teas with traditional methods.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">March 5, 2024</span>
-                  <button className="text-[#FF5722] hover:text-[#FF9800] font-medium text-sm">
-                    Read More →
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
 
         {/* book */}
-        <div className="z-[10]" style={{ perspective: "1000px" }}>
-          <div
-            ref={containerRef}
-            className="book"
-            style={{ transform: "rotateX(7.5deg)" }}
-          >
-            <div id="pages" className="pages">
-              <div className="page overflow-hidden">
-                <Image
-                  src={bookCover}
-                  alt="BD Map"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10">
-                <p>Hello there!</p>
-              </div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10">
-                <div
-                  className="bg-red-500 !z-[99999] "
-                  onClick={handlePageContentClick}
-                  style={{ position: "relative", zIndex: 99999 }}
-                >
-                  <p>text</p>
-                </div>
-              </div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10">
-                <Image
-                  src={
-                    "https://khatifood.com/wp-content/uploads/2022/01/Bogra-Special-Doi.jpg"
-                  }
-                  alt="BD Map"
-                  width={576}
-                  height={400}
-                />
-              </div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-              <div className="page p-2 sm:p-4 md:p-6 lg:p-10"></div>
-            </div>
-          </div>
-        </div>
+        <Book />
       </div>
     </main>
   );

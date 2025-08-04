@@ -17,6 +17,11 @@ body {
   overflow-x: hidden;
 }
 
+/* Background gradient for the body */
+.bg-gradient-custom {
+  background-image: linear-gradient(0deg, hsl(197deg 61% 55%) 0%, hsl(198deg 59% 60%) 10%, hsl(199deg 59% 65%) 20%, hsl(200deg 58% 69%) 29%, hsl(200deg 58% 72%) 38%, hsl(201deg 57% 76%) 46%, hsl(201deg 57% 80%) 54%, hsl(201deg 57% 83%) 61%, hsl(201deg 57% 86%) 69%, hsl(202deg 56% 90%) 77%, hsl(202deg 56% 93%) 84%, hsl(202deg 56% 97%) 92%, hsl(0deg 0% 100%) 100%);
+}
+
 /* Smooth scrolling for the whole page */
 html.lenis {
   height: auto;
@@ -130,18 +135,18 @@ html.lenis {
   flex: 4;
 }
 
-.card p span {
+.card p a {
   min-width: 14em;
   padding: 0.5em;
   text-align: center;
   transform: rotate(-90deg);
   transition: all 0.5s;
   text-transform: uppercase;
-  /* color: #f97316; */
+  color: #f97316;
   letter-spacing: 0.1em;
 }
 
-.card p:hover span {
+.card p:hover a {
   transform: rotate(0deg);
 }
 
@@ -330,6 +335,23 @@ html.lenis {
   pointer-events: all;
   transform: rotateY(0deg);
 }
+
+/* Allow interactive elements to work properly */
+.book .page a,
+.book .page button,
+.book .page [role="button"],
+.book .page .skip-page-flip {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 1000;
+}
+
+/* Ensure button containers are also clickable */
+.book .page .flex.items-center.justify-between {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 999;
+}
 .book .page.flipped:nth-child(even):hover {
   transform: rotateY(15deg);
 }
@@ -351,4 +373,16 @@ html.lenis {
   .font-playfair {
     font-family: var(--font-playfair);
   }
+}
+
+/* Z-index layering for modal */
+body {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure website content stays visible behind modal */
+main, .pt-24 {
+  position: relative;
+  z-index: 1;
 }

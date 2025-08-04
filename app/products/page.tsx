@@ -1,90 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useCart } from "../../components/CartContext";
+import { useSearchParams } from "next/navigation";
+import { products } from "../../data/products";
 
 export default function Products() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [sortBy, setSortBy] = useState("featured");
   const { addToCart } = useCart();
+  const searchParams = useSearchParams();
 
-  // Mock product data
-  const products = [
-    {
-      id: 1,
-      name: "Hand-woven Jamdani Saree",
-      category: "textiles",
-      price: 249.99,
-      image: "/jamdani.jpg",
-      featured: true,
-      slug: "jamdani",
-    },
-    {
-      id: 2,
-      name: "Brass Decorative Plate",
-      category: "home-decor",
-      price: 79.99,
-      image: "/brass-plate.jpg",
-      featured: true,
-      slug: "brass-plate",
-    },
-    {
-      id: 3,
-      name: "Wooden Carved Elephant",
-      category: "sculptures",
-      price: 149.99,
-      image: "/wooden-elephant.jpg",
-      featured: false,
-      slug: "wooden-elephant",
-    },
-    {
-      id: 4,
-      name: "Natural Silk Scarf",
-      category: "textiles",
-      price: 59.99,
-      image: "/silk-scarf.jpg",
-      featured: false,
-      slug: "silk-scarf",
-    },
-    {
-      id: 5,
-      name: "Terracotta Tea Set",
-      category: "home-decor",
-      price: 89.99,
-      image: "/tea-set.jpg",
-      featured: true,
-      slug: "tea-set",
-    },
-    {
-      id: 6,
-      name: "Embroidered Wall Hanging",
-      category: "home-decor",
-      price: 119.99,
-      image: "/wall-hanging.jpg",
-      featured: false,
-      slug: "wall-hanging",
-    },
-    {
-      id: 7,
-      name: "Kantha Stitch Cushion Cover",
-      category: "textiles",
-      price: 39.99,
-      image: "/cushion-cover.jpg",
-      featured: false,
-      slug: "cushion-cover",
-    },
-    {
-      id: 8,
-      name: "Bamboo Handicraft Basket",
-      category: "home-decor",
-      price: 49.99,
-      image: "/basket.jpg",
-      featured: false,
-      slug: "basket",
-    },
-  ];
+  // Set initial category from URL parameter
+  useEffect(() => {
+    const categoryParam = searchParams.get("category");
+    if (categoryParam) {
+      setActiveCategory(categoryParam);
+    }
+  }, [searchParams]);
 
   // Filter products based on active category
   const filteredProducts =
@@ -137,7 +72,7 @@ export default function Products() {
   };
 
   return (
-    <main className="min-h-screen py-10 px-4">
+    <main className="min-h-screen py-10 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <motion.h1
@@ -184,34 +119,44 @@ export default function Products() {
               All
             </button>
             <button
-              onClick={() => setActiveCategory("textiles")}
+              onClick={() => setActiveCategory("fruits-and-flavors")}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                activeCategory === "textiles"
+                activeCategory === "fruits-and-flavors"
                   ? "bg-[#FF5722] text-white"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }`}
             >
-              Textiles
+              Fruits and Flavors
             </button>
             <button
-              onClick={() => setActiveCategory("home-decor")}
+              onClick={() => setActiveCategory("weaves-and-textiles")}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                activeCategory === "home-decor"
+                activeCategory === "weaves-and-textiles"
                   ? "bg-[#FF5722] text-white"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }`}
             >
-              Home Decor
+              Weaves and Textiles
             </button>
             <button
-              onClick={() => setActiveCategory("sculptures")}
+              onClick={() => setActiveCategory("handcrafted-heritage")}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                activeCategory === "sculptures"
+                activeCategory === "handcrafted-heritage"
                   ? "bg-[#FF5722] text-white"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }`}
             >
-              Sculptures
+              Handcrafted Heritage
+            </button>
+            <button
+              onClick={() => setActiveCategory("regional-specialties")}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                activeCategory === "regional-specialties"
+                  ? "bg-[#FF5722] text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              Regional Specialties
             </button>
           </motion.div>
 
@@ -272,7 +217,7 @@ export default function Products() {
                   </h3>
                 </Link>
                 <p className="text-sm text-gray-500 capitalize mb-2">
-                  {product.category.replace("-", " ")}
+                  {product.category.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
                 </p>
 
                 <div className="flex justify-between items-center">

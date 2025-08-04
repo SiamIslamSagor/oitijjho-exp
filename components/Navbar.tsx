@@ -16,6 +16,8 @@ import { useGSAP } from "@gsap/react";
 import Lenis from "@studio-freight/lenis";
 import CartButton from "./CartButton";
 import CartDrawer from "./CartDrawer";
+import { useAuth } from "./AuthContext";
+import { useModal } from "./ModalProvider";
 import Image from "next/image";
 import logo from "@/assets/images/logo.png";
 
@@ -167,6 +169,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, isAuthenticated, logout } = useAuth();
+  const { showSignUpModal } = useModal();
   const pathname = usePathname(); // Use Next.js pathname hook
   const navRef = useRef(null);
   const logoRef = useRef(null);
@@ -522,6 +526,7 @@ export default function Navbar() {
           >
             <NavLink href="/">Home</NavLink>
             <NavLink href="/products">Products</NavLink>
+            <NavLink href="/articles">Articles</NavLink>
             <NavLink href="/about">About</NavLink>
             <NavLink href="/contact">Contact</NavLink>
 
@@ -529,31 +534,66 @@ export default function Navbar() {
               {/* Cart Button */}
               <CartButton />
 
-              {/* Sign In Button */}
-              <motion.button
-                className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
-                whileHover={{
-                  scale: 1.03,
-                  boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
-                }}
-                whileTap={{ scale: 0.97 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 10,
-                }}
-              >
-                <span className="relative z-10">Sign In</span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
-                  initial={{ scale: 0, opacity: 0 }}
+              {/* User Profile / Sign In */}
+              {isAuthenticated ? (
+                <div className="flex items-center gap-3">
+                  {/* User Avatar */}
+                  {/* <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-[#FF5722] to-[#FF9800] flex items-center justify-center text-white text-sm font-semibold">
+                      {user?.avatar ? (
+                        <img 
+                          src={user.avatar} 
+                          alt={user.name} 
+                          className="w-8 h-8 rounded-full object-cover"
+                        />
+                      ) : (
+                        user?.name?.charAt(0) || 'U'
+                      )}
+                    </div>
+                    <span className="text-sm font-medium text-gray-700 hidden lg:block">
+                      {user?.name}
+                    </span>
+                  </div> */}
+                  
+                  
+
+                  {/* Logout Button */}
+                  <motion.button
+                    onClick={logout}
+                    className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-full font-medium text-sm transition-colors duration-200"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Logout
+                  </motion.button>
+                </div>
+              ) : (
+                <motion.button
+                  onClick={showSignUpModal}
+                  className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-2 md:px-3 lg:px-6 rounded-full font-medium whitespace-nowrap shadow-md shadow-[#FF5722]/20 relative overflow-hidden group cursor-pointer md:ml-1 lg:ml-2"
                   whileHover={{
-                    scale: 1,
-                    opacity: 1,
+                    scale: 1.03,
+                    boxShadow: "0 0 20px 0 rgba(255, 87, 34, 0.5)",
                   }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.button>
+                  whileTap={{ scale: 0.97 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 10,
+                  }}
+                >
+                  <span className="relative z-10">Sign In</span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-[#FF9800] to-[#FF5722] rounded-full"
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileHover={{
+                      scale: 1,
+                      opacity: 1,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.button>
+              )}
             </div>
           </div>
 
@@ -629,6 +669,7 @@ export default function Navbar() {
                     {[
                       { href: "/", label: "Home" },
                       { href: "/products", label: "Products" },
+                      { href: "/articles", label: "Articles" },
                       { href: "/about", label: "About" },
                       { href: "/contact", label: "Contact" },
                     ].map(link => (
@@ -677,12 +718,13 @@ export default function Navbar() {
                   animate="open"
                   exit="closed"
                 >
-                  <motion.button
-                    className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-3 px-6 rounded-full font-medium shadow-md shadow-[#FF5722]/20 w-full"
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    Sign In
-                  </motion.button>
+                                     <motion.button
+                     onClick={showSignUpModal}
+                     className="bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white py-3 px-6 rounded-full font-medium shadow-md shadow-[#FF5722]/20 w-full"
+                     whileTap={{ scale: 0.97 }}
+                   >
+                     Sign In
+                   </motion.button>
                 </motion.div>
               </div>
             </motion.div>
