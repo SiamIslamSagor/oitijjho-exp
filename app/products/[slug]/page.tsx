@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Return a list of `params` to populate the [slug] dynamic segment
@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 
 // Generate metadata for SEO
 /* export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   const product = getProductBySlug(slug);
   
   if (!product) {
@@ -41,8 +41,8 @@ export async function generateStaticParams() {
   };
 } */
 
-export default function ProductDetailPage({ params }: PageProps) {
-  const { slug } = params;
+export default async function ProductDetailPage({ params }: PageProps) {
+  const { slug } = await params;
   
   // Get product data on the server
   const product = getProductBySlug(slug);

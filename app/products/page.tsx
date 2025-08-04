@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useCart } from "../../components/CartContext";
 import { useSearchParams } from "next/navigation";
 import { products } from "../../data/products";
 
-export default function Products() {
+// Separate component for search params logic
+function ProductsContent() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [sortBy, setSortBy] = useState("featured");
   const { addToCart } = useCart();
@@ -246,5 +247,47 @@ export default function Products() {
         )}
       </div>
     </main>
+  );
+}
+
+// Loading component for Suspense fallback
+function ProductsLoading() {
+  return (
+    <main className="min-h-screen py-10 px-4 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <div className="animate-pulse">
+            <div className="h-12 bg-gray-200 rounded mb-4 mx-auto max-w-md"></div>
+            <div className="h-1 bg-gray-200 rounded mb-4 mx-auto w-24"></div>
+            <div className="h-4 bg-gray-200 rounded mb-2 mx-auto max-w-lg"></div>
+            <div className="h-4 bg-gray-200 rounded mx-auto max-w-md"></div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+              <div className="h-64 bg-gray-200 animate-pulse"></div>
+              <div className="p-6">
+                <div className="h-6 bg-gray-200 rounded mb-2 animate-pulse"></div>
+                <div className="h-4 bg-gray-200 rounded mb-4 animate-pulse"></div>
+                <div className="flex justify-between items-center">
+                  <div className="h-4 bg-gray-200 rounded w-16 animate-pulse"></div>
+                  <div className="h-8 bg-gray-200 rounded w-24 animate-pulse"></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
+  );
+}
+
+// Main component with Suspense wrapper
+export default function Products() {
+  return (
+    <Suspense fallback={<ProductsLoading />}>
+      <ProductsContent />
+    </Suspense>
   );
 }
