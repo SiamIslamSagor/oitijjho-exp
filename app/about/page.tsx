@@ -281,18 +281,49 @@ export default function About() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {[
-              { name: "Adnan Rahman", role: "Founder & CEO" },
-              { name: "Nusrat Jahan", role: "Creative Director" },
-              { name: "Farhan Ahmed", role: "Head of Artisan Relations" },
-              { name: "Samira Khan", role: "Marketing Director" },
+              {
+                name: "Zinan Ishmam",
+                role: "Founder and CEO",
+                description: "Zinan Ishmam is the Founder and Chief Executive Officer of Oitijjho Express. Currently pursuing a Bachelor of Business Administration (BBA), he has completed a startup development program during his studies, equipping him with valuable entrepreneurial skills. Zinan oversees the company's strategic direction and sales operations, guiding the startup's growth with a clear vision. He is passionate about promoting Bangladesh's rich cultural heritage and is committed to bringing it recognition on the global stage."
+              },
+              {
+                name: "Mostahidur Rahman Rafi",
+                role: "Co-Founder & Managing Director",
+                description: "Mostahidur Rahman Rafi is the Co-Founder and Managing Director of Oitijjho Express. He oversees core operations, including team coordination, strategic planning, and quality control. His structured approach ensures operational efficiency and alignment with the company's standards, contributing to the smooth and consistent execution of business activities."
+              },
+              {
+                name: "M. Hasan Aoyon",
+                role: "Chief Rural Development Manager",
+                description: "M Hasan Aoyon leads rural engagement at Oitijjho Express as the Chief Rural Development Manager. His primary focus is building and maintaining strong relationships with artisan communities across the country. By understanding their needs and empowering their craft, he plays a key role in connecting tradition with opportunity, ensuring sustainable collaboration between the brand and its grassroots partners."
+              },
+              {
+                name: "Shawon Mahbub",
+                role: "Chief Technology Officer (CTO)",
+                description: "Shawon Mahbub brings extensive technical expertise to Oitijjho Express as the Chief Technology Officer. With professional experience in a multinational company and a background in one of the country's leading telecom brands, he leads the development of the company's digital infrastructure. His knowledge in scalable systems and tech-driven solutions is vital to the startup's growth and innovation."
+              },
+              {
+                name: "Mahbubur Rahman Borno",
+                role: "Head of Logistics",
+                description: "Mahbubur Rahman Borno serves as the Head of Logistics at Oitijjho Express. Known for his sharp critical thinking and calm approach under pressure, he ensures smooth coordination across the supply chain. Borno is skilled at handling unexpected challenges and plays a crucial role in maintaining timely and efficient delivery operations across all regions."
+              },
+              {
+                name: "Shouvik Ahmed",
+                role: "Chief Operating Officer (COO)",
+                description: "Shouvik Ahmed is the Chief Operating Officer of Oitijjho Express, bringing valuable corporate experience to the startup environment. Known for his agility and adaptability, he oversees strategic implementation and client relations. His leadership ensures that the company's operations align with its long-term goals while maintaining strong relationships with clients and stakeholders."
+              },
+              {
+                name: "Taimur Rohan",
+                role: "Head of Production",
+                description: "Taimur Rohan serves as the Head of Production at Oitijjho Express. With experience in leading restaurant chains across the country, he now oversees the development of visual content, promotional materials, and corporate media. His work is instrumental in enhancing the brand's identity and effectively communicating its values to a broader audience."
+              }
             ].map((member, index) => (
               <div
                 key={index}
-                className="team-member bg-white p-6 rounded-xl text-center border border-gray-100 shadow-sm"
+                className="team-member bg-white p-6 rounded-xl text-center border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300"
               >
-                <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden">
+                <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden relative">
                   {/* Placeholder for team member photo */}
                   <div className="absolute inset-0 bg-gradient-to-br from-orange-300/20 to-orange-500/20" />
                 </div>
@@ -300,19 +331,10 @@ export default function About() {
                   {member.name}
                 </h3>
                 <p className="text-[#FF5722] font-medium mb-3">{member.role}</p>
-                <div className="flex justify-center space-x-3">
-                  <a href="#" className="text-gray-400 hover:text-[#FF5722]">
-                    <span className="sr-only">LinkedIn</span>
-                    <svg
-                      className="h-5 w-5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M19.7,3H4.3C3.582,3,3,3.582,3,4.3v15.4C3,20.418,3.582,21,4.3,21h15.4c0.718,0,1.3-0.582,1.3-1.3V4.3 C21,3.582,20.418,3,19.7,3z M8.339,18.338H5.667v-8.59h2.672V18.338z M7.004,8.574c-0.857,0-1.549-0.694-1.549-1.548 c0-0.855,0.691-1.548,1.549-1.548c0.854,0,1.547,0.694,1.547,1.548C8.551,7.881,7.858,8.574,7.004,8.574z M18.339,18.338h-2.669 v-4.177c0-0.996-0.017-2.278-1.387-2.278c-1.389,0-1.601,1.086-1.601,2.206v4.249h-2.667v-8.59h2.559v1.174h0.037 c0.356-0.675,1.227-1.387,2.526-1.387c2.703,0,3.203,1.779,3.203,4.092V18.338z"></path>
-                    </svg>
-                  </a>
-                </div>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                  {member.description}
+                </p>
+                 
               </div>
             ))}
           </div>
