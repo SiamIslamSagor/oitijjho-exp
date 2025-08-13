@@ -69,16 +69,17 @@ export default function TooltipComponent({
   };
 
   return (
-    <div className="flex justify-center items-center h-[300px] relative">
+    <div className="flex justify-center items-center h-[300px] relative ">
+      <Link href={popup1Link}>
       <div
-        className="relative w-[95px] h-[60px] md:w-[120px] md:h-[75px] bg-transparent cursor-pointer flex items-center justify-center"
+        className="relative  w-[95px] h-[60px] md:w-[120px] md:h-[75px] bg-transparent cursor-pointer flex items-center justify-center"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {isHovered && (
             <>
-              {/* Popup button - Top */}
+              
               <motion.div
                 className="absolute left-1/2 -translate-x-1/2 -top-full px-3 py-2 rounded cursor-pointer z-10"
                 onClick={() => handlePopupClick("Top Button")}
@@ -96,7 +97,7 @@ export default function TooltipComponent({
                 </Link>
               </motion.div>
 
-              {/* Popup button - Left */}
+              
               <motion.div
                 className="absolute top-1/2 -translate-y-1/2 -left-full px-3 py-2 rounded cursor-pointer z-10"
                 onClick={() => handlePopupClick("Left Button")}
@@ -114,7 +115,7 @@ export default function TooltipComponent({
                 </Link>
               </motion.div>
 
-              {/* Popup button - Right */}
+              
               <motion.div
                 className="absolute top-1/2 -translate-y-1/2 -right-full px-3 py-2 rounded cursor-pointer z-10"
                 onClick={() => handlePopupClick("Right Button")}
@@ -133,8 +134,9 @@ export default function TooltipComponent({
               </motion.div>
             </>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </div>
+      </Link>
     </div>
   );
 }

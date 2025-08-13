@@ -164,14 +164,14 @@ export default function Footer() {
                   Home
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/products"
                   className="text-gray-600 hover:text-[#FF5722] transition-colors"
                 >
                   Product Catalog
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   href="/about"
@@ -227,22 +227,6 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/returns"
-                  className="text-gray-600 hover:text-[#FF5722] transition-colors"
-                >
-                  Returns and Exchanges
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/faq"
-                  className="text-gray-600 hover:text-[#FF5722] transition-colors"
-                >
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/privacy"
                   className="text-gray-600 hover:text-[#FF5722] transition-colors"
                 >
@@ -255,6 +239,22 @@ export default function Footer() {
                   className="text-gray-600 hover:text-[#FF5722] transition-colors"
                 >
                   Terms and Conditions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/returns"
+                  className="text-gray-600 hover:text-[#FF5722] transition-colors"
+                >
+                  Returns and Exchanges
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/faq"
+                  className="text-gray-600 hover:text-[#FF5722] transition-colors"
+                >
+                  FAQ
                 </Link>
               </li>
             </motion.ul>
