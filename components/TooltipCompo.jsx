@@ -6,7 +6,7 @@ export default function TooltipComponent({
   popup1Text = "Hover me!",
   popup2Text = "Hover me!",
   popup3Text = "Hover me!",
-  popup1Link = "/bogurar-doi",
+  popup1Link = "/products/bogurar-doi",
   popup2Link = "/",
   popup3Link = "/",
 }) {

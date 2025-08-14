@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useCart } from "../../components/CartContext";
 import { useSearchParams } from "next/navigation";
 import { products } from "../../data/products";
+import Image from "next/image";
 
 // Separate component for search params logic
 function ProductsContent() {
@@ -203,7 +204,8 @@ function ProductsContent() {
             >
               <Link href={`/products/${product.slug}`} className="block">
                 <div className="h-64 bg-gray-200 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-300/20 to-orange-500/20" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-300/20 to-orange-100/20" />
+                  {product.image && <Image src={product.image} alt={product.name} width={650} height={650} />}
                   {product.featured && (
                     <div className="absolute top-2 right-2 bg-[#FF5722] text-white text-xs font-bold px-2 py-1 rounded-full">
                       Featured

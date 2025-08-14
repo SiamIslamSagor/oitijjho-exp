@@ -303,11 +303,7 @@ export default function About() {
                 role: "Chief Technology Officer (CTO)",
                 description: "Shawon Mahbub brings extensive technical expertise to Oitijjho Express as the Chief Technology Officer. With professional experience in a multinational company and a background in one of the country's leading telecom brands, he leads the development of the company's digital infrastructure. His knowledge in scalable systems and tech-driven solutions is vital to the startup's growth and innovation."
               },
-              {
-                name: "Mahbubur Rahman Borno",
-                role: "Head of Logistics",
-                description: "Mahbubur Rahman Borno serves as the Head of Logistics at Oitijjho Express. Known for his sharp critical thinking and calm approach under pressure, he ensures smooth coordination across the supply chain. Borno is skilled at handling unexpected challenges and plays a crucial role in maintaining timely and efficient delivery operations across all regions."
-              },
+             
               {
                 name: "Shouvik Ahmed",
                 role: "Chief Operating Officer (COO)",

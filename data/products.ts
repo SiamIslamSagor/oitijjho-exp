@@ -114,49 +114,7 @@ export const products: Product[] = [
     leadTime: "5-10 days",
     shipping: "Free shipping on orders over $300"
   },
-  {
-    id: 3,
-    name: "Wooden Carved Elephant",
-    category: "handcrafted-heritage",
-    basePrice: 149.99,
-    price: 149.99,
-    image: "/wooden-elephant.jpg",
-    images: [
-      "/wooden-elephant.jpg",
-      "/wooden-elephant-2.jpg",
-      "/wooden-elephant-3.jpg",
-    ],
-    featured: false,
-    slug: "wooden-elephant",
-    description: "Exquisitely carved wooden elephant sculpture showcasing traditional Bengali woodworking skills. Each piece is hand-carved from sustainable teak wood.",
-    specifications: {
-      "Material": "Teak Wood",
-      "Height": "12 inches",
-      "Weight": "2.5 kg",
-      "Finish": "Natural wood with oil finish",
-      "Origin": "Dhaka, Bangladesh",
-      "Care Instructions": "Dust regularly, avoid direct sunlight"
-    },
-    features: [
-      "Hand-carved teak wood",
-      "Traditional motifs",
-      "Natural finish",
-      "Sustainable material",
-      "Perfect centerpiece"
-    ],
-    quantityPricing: [
-      { min: 1, max: 4, price: 149.99, discount: 0 },
-      { min: 5, max: 9, price: 139.99, discount: 7 },
-      { min: 10, max: 24, price: 129.99, discount: 13 },
-      { min: 25, max: 49, price: 119.99, discount: 20 },
-      { min: 50, max: 99, price: 109.99, discount: 27 },
-      { min: 100, max: 999, price: 99.99, discount: 33 }
-    ],
-    minOrder: 1,
-    stock: 75,
-    leadTime: "10-15 days",
-    shipping: "Free shipping on orders over $400"
-  },
+ 
   {
     id: 4,
     name: "Natural Silk Scarf",
@@ -455,10 +413,11 @@ export const products: Product[] = [
     category:"fruits-and-flavors",
     basePrice: 15.99,
     price: 15.99,
-    image: "/bogurar-doi.jpg",
+    image: "https://i.ibb.co.com/RTqDcgP5/bogurar-doi-4167c500.jpg",
     images: [
-      "/bogurar-doi.jpg",
-      "/bogurar-doi-2.jpg",
+      "https://i.ibb.co.com/RTqDcgP5/bogurar-doi-4167c500.jpg",
+      "https://i.ibb.co.com/RTqDcgP5/bogurar-doi-4167c500.jpg",
+      // "https://i.ibb.co.com/1GnMNWgD/doi.jpg",
     ],
     featured: true,
     slug: "bogurar-doi",

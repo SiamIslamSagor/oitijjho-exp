@@ -6,6 +6,7 @@ import { useCart } from "../../../components/CartContext";
 import Link from "next/link";
 import { getCurrentPricing } from "../../../data/products";
 import { Product } from "../../../data/products";
+import Image from "next/image";
 
 interface ProductDetailClientProps {
   product: Product;
@@ -73,7 +74,10 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
           <div className="space-y-4">
             <div className="aspect-square bg-white rounded-lg overflow-hidden border">
               <div className="h-full bg-gray-200 relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-300/20 to-orange-500/20" />
+                {/* <div className="absolute inset-0 bg-gradient-to-r from-orange-300/20 to-orange-500/20" /> */}
+               
+          {product.image && <Image src={product.image} alt={product.name} width={650} height={650} />}
+      
                 {product.featured && (
                   <div className="absolute top-4 left-4 bg-[#FF5722] text-white text-xs font-bold px-3 py-1 rounded-full">
                     Featured
@@ -86,15 +90,17 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
             {product.images && (
               <div className="grid grid-cols-4 gap-2">
                 {product.images.map((image: string, index: number) => (
-                  <button
+                  <Image
                     key={index}
                     onClick={() => setSelectedImage(index)}
-                    className={`aspect-square bg-white rounded-lg overflow-hidden border-2 ${
+                    className={`aspect-square bg-white rounded-lg overflow-hidden border-2 cursor-pointer ${
                       selectedImage === index ? 'border-[#FF5722]' : 'border-gray-200'
                     }`}
-                  >
-                    <div className="h-full bg-gray-200" />
-                  </button>
+                    src={image}
+                    alt={product.name}
+                    width={650}
+                    height={650}
+                  />
                 ))}
               </div>
             )}
